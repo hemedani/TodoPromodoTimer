@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-class AddTodo extends PureComponent {
+class TodoList extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Add Todo Modal</Text>
+        <Text>Todo List</Text>
       </View>
     );
   }
@@ -13,8 +13,8 @@ class AddTodo extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 3
   }
 });
 
-export default AddTodo;
+export default TodoList;
