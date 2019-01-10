@@ -1,11 +1,13 @@
 import React, { PureComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Divider } from "react-native-elements";
 
 class PromodoTimer extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
         <Text>PromodoTimer Page</Text>
+        <Divider />
       </View>
     );
   }
@@ -13,7 +15,8 @@ class PromodoTimer extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: "space-between"
   }
 });
 

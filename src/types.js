@@ -1,2 +1,3 @@
 export const SHOW_ALL = "SHOW_ALL";
 export const TOGGLE_VISIBILITY_ADD_MODAL = "TOGGLE_VISIBILITY_ADD_MODAL";
+export const ADD_TODO = "ADD_TODO";

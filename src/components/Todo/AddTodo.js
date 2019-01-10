@@ -4,19 +4,12 @@ import { Formik, Field } from "formik";
 import { Button } from "react-native-elements";
 import CustomInp from "../../utils/CustomInp";
 
-const AddTodo = ({ addModalVisibilty, toggleAddTodoModal }) => (
-  <Modal
-    animationType="slide"
-    transparent={false}
-    visible={addModalVisibilty}
-    onRequestClose={() => {
-      Alert.alert("Modal has been closed.");
-    }}
-  >
+const AddTodo = ({ addModalVisibilty, toggleAddTodoModal, addTodo }) => (
+  <Modal animationType="slide" transparent={false} visible={addModalVisibilty}>
     <View style={styles.container}>
       <Formik
         onSubmit={({ title, description }) => {
-          Alert.alert(`firstName: ${title}`, `firstName: ${description}`);
+          addTodo({ title, description });
         }}
         render={({ handleSubmit }) => (
           <View>
