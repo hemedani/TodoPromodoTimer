@@ -1,17 +1,14 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Divider } from "react-native-elements";
 
-class PromodoTimer extends PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>PromodoTimer Page</Text>
-        <Divider />
-      </View>
-    );
-  }
-}
+const PromodoTimer = ({ focusedTodo }) => (
+  <View style={styles.container}>
+    <Text>PromodoTimer Page</Text>
+    <Text>{focusedTodo.title}</Text>
+    <Divider />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
