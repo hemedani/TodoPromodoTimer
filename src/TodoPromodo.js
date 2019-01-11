@@ -4,13 +4,22 @@ import { connect } from "react-redux";
 import { Header, Button } from "react-native-elements";
 
 import {
+  //todo actions
   toggleAddTodoModal,
   addTodo,
   setFocusedTodo,
   finishedTodo,
   unfinishedTodo,
   getShowedTodo,
-  removeTodo
+  removeTodo,
+
+  //promodo actions
+  decrementPromodoroTime,
+  decrementBreakTime,
+  incrementPromodoroRound,
+  incrementBreackRound,
+  setPromodoroStatus,
+  setPlayStatus
 } from "./actions";
 
 import TodoList from "./components/Todo/TodoList";
@@ -18,6 +27,7 @@ import AddTodo from "./components/Todo/AddTodo";
 import PromodoTimer from "./components/Promodo/PromodoTimer";
 
 const TodoPromodo = ({
+  //todo props
   todos,
   addTodo,
   toggleAddTodoModal,
@@ -25,12 +35,30 @@ const TodoPromodo = ({
   finishedTodo,
   unfinishedTodo,
   getShowedTodo,
-  removeTodo
+  removeTodo,
+
+  //promodo props
+  promodo,
+  decrementPromodoroTime,
+  decrementBreakTime,
+  incrementPromodoroRound,
+  incrementBreackRound,
+  setPromodoroStatus,
+  setPlayStatus
 }) => (
   <View style={styles.container}>
     <Header centerComponent={{ text: "Todo Promodo App", style: { color: "#fff" } }} />
     <View style={styles.pages}>
-      <PromodoTimer focusedTodo={todos.focusedTodo} />
+      <PromodoTimer
+        focusedTodo={todos.focusedTodo}
+        promodo={promodo}
+        decrementPromodoroTime={decrementPromodoroTime}
+        decrementBreakTime={decrementBreakTime}
+        incrementPromodoroRound={incrementPromodoroRound}
+        incrementBreackRound={incrementBreackRound}
+        setPromodoroStatus={setPromodoroStatus}
+        setPlayStatus={setPlayStatus}
+      />
       <TodoList
         showedTodo={todos.showedTodo}
         removeTodo={removeTodo}
@@ -41,7 +69,14 @@ const TodoPromodo = ({
       />
     </View>
     <AddTodo addModalVisibilty={todos.addModalVisibilty} toggleAddTodoModal={toggleAddTodoModal} addTodo={addTodo} />
-    <Button raised icon={{ name: "add" }} title="Add To Do" onPress={toggleAddTodoModal} />
+    <Button
+      raised
+      icon={{ name: "add" }}
+      backgroundColor="#0035B0"
+      borderRadius={8}
+      title="Add To Do"
+      onPress={toggleAddTodoModal}
+    />
   </View>
 );
 
@@ -55,9 +90,26 @@ const styles = StyleSheet.create({
   }
 });
 
-const msp = ({ todos }) => ({ todos });
+const msp = ({ todos, promodo }) => ({ todos, promodo });
 
 export default connect(
   msp,
-  { toggleAddTodoModal, addTodo, setFocusedTodo, finishedTodo, unfinishedTodo, getShowedTodo, removeTodo }
+  {
+    //todo actions
+    toggleAddTodoModal,
+    addTodo,
+    setFocusedTodo,
+    finishedTodo,
+    unfinishedTodo,
+    getShowedTodo,
+    removeTodo,
+
+    //promodo actions
+    decrementPromodoroTime,
+    decrementBreakTime,
+    incrementPromodoroRound,
+    incrementBreackRound,
+    setPromodoroStatus,
+    setPlayStatus
+  }
 )(TodoPromodo);

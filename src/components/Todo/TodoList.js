@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
-import { View, ScrollView, Text, StyleSheet } from "react-native";
-import { Card, Button, ButtonGroup } from "react-native-elements";
+import { View, ScrollView, StyleSheet } from "react-native";
+import { ButtonGroup } from "react-native-elements";
+
+import EachTodo from "./EachTodo";
 
 class TodoList extends PureComponent {
   constructor(props) {
@@ -9,6 +11,10 @@ class TodoList extends PureComponent {
       selectedIndex: 0
     };
     this.updateIndex = this.updateIndex.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getShowedTodo("Unfinished");
   }
 
   updateIndex(selectedIndex) {
@@ -30,22 +36,15 @@ class TodoList extends PureComponent {
           containerStyle={{ height: 20 }}
         />
         <ScrollView>
-          {showedTodo.map(u => (
-            <Card key={u.id} title={u.title}>
-              <View>
-                <Text>{u.description}</Text>
-                <View style={styles.btnContainer}>
-                  <Button small title="focus" backgroundColor="#B59B69" borderRadius={8} onPress={() => setFocusedTodo(u)} />
-                  {u.status === "Unfinished" ? (
-                    <Button title="finish" backgroundColor="#7B632F" borderRadius={8} onPress={() => finishedTodo(u)} />
-                  ) : (
-                    <Button title="unfinish" backgroundColor="#B59B69" borderRadius={8} onPress={() => unfinishedTodo(u)} />
-                  )}
-
-                  <Button small title="remove" borderRadius={8} backgroundColor="#de0000" onPress={() => removeTodo(u.id)} />
-                </View>
-              </View>
-            </Card>
+          {showedTodo.map(todo => (
+            <EachTodo
+              key={todo.id}
+              todo={todo}
+              setFocusedTodo={setFocusedTodo}
+              finishedTodo={finishedTodo}
+              unfinishedTodo={unfinishedTodo}
+              removeTodo={removeTodo}
+            />
           ))}
         </ScrollView>
       </View>
@@ -57,12 +56,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 3,
     paddingBottom: 5
-  },
-  btnContainer: {
-    flex: 1,
-    marginTop: 8,
-    flexDirection: "row",
-    justifyContent: "space-evenly"
   }
 });
 
