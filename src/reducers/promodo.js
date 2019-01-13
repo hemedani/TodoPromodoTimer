@@ -14,8 +14,8 @@ import {
 const defaultState = {
   promodoroRound: 1,
   breakRound: 1,
-  promodoroTime: 25,
-  breakTime: 5,
+  promodoroTime: 25 * 60,
+  breakTime: 5 * 60,
   status: "Nothing",
   playStatus: "pause"
 };

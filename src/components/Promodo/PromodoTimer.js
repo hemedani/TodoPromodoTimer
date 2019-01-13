@@ -25,15 +25,15 @@ class PromodoTimer extends PureComponent {
           }
         } else {
           if (this.props.promodo.promodoroRound === 4) {
-            this.props.setBreakTime(10);
+            this.props.setBreakTime(10 * 60);
             this.props.setPromodoroStatus("Rest Time");
-            this.props.setPromodoroTime(25);
+            this.props.setPromodoroTime(25 * 60);
             this.props.setPromodoRound(1);
             this.props.setBreakRound(0);
           } else {
             this.props.setPromodoroStatus("Rest Time");
             this.props.incrementPromodoroRound();
-            this.props.setPromodoroTime(25);
+            this.props.setPromodoroTime(25 * 60);
           }
         }
       } else if (this.props.promodo.status === "Rest Time") {
@@ -42,7 +42,7 @@ class PromodoTimer extends PureComponent {
         } else {
           this.props.setPromodoroStatus("Working Time");
           this.props.incrementBreackRound();
-          this.props.setBreakTime(5);
+          this.props.setBreakTime(5 * 60);
         }
       }
     } else {
@@ -82,7 +82,7 @@ class PromodoTimer extends PureComponent {
       <View style={styles.container}>
         <Text>You are in : {this.showingTimerAndRound()}</Text>
         <Text style={styles.timer}>
-          {promodo.status === "Rest Time" ? hhmmss(promodo.breakTime) : hhmmss(promodo.promodoroTime)}{" "}
+          {promodo.status === "Rest Time" ? hhmmss(promodo.breakTime) : hhmmss(promodo.promodoroTime)}
         </Text>
         {promodo.playStatus === "pause" ? (
           <Icon reverse raised name="play-circle" type="font-awesome" color="#0035B0" size={20} onPress={this.calcTimer} />

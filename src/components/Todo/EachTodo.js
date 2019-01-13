@@ -39,7 +39,9 @@ class EachTodo extends PureComponent {
           <Divider />
 
           <View style={styles.btnContainer}>
-            <Button small title="focus" backgroundColor="#B59B69" borderRadius={8} onPress={this.setFocusedTodo} />
+            {todo.status === "Unfinished" && (
+              <Button small title="focus" backgroundColor="#B59B69" borderRadius={8} onPress={this.setFocusedTodo} />
+            )}
             {todo.status === "Unfinished" ? (
               <Button title="finish" backgroundColor="#7B632F" borderRadius={8} onPress={this.finishedTodo} />
             ) : (
