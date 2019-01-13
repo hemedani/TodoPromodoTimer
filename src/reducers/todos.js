@@ -5,7 +5,8 @@ import {
   FINISHED_TODO,
   UNFINISHED_TODO,
   SET_FOCUSED_TODO,
-  REMOVED_TODO
+  REMOVED_TODO,
+  INCREMENT_FOCUCED_TIME
 } from "../types";
 import { v1 } from "uuid";
 import _ from "lodash";
@@ -25,10 +26,25 @@ export default (todos = (state = defaultState, action) => {
     case TOGGLE_VISIBILITY_ADD_MODAL:
       return { ...state, addModalVisibilty: !state.addModalVisibilty };
     case ADD_TODO:
-      newTodo = { ...action.payload, id: v1(), status: "Unfinished" };
+      newTodo = { ...action.payload, id: v1(), status: "Unfinished", focusedTime: 0 };
       return { ...state, todoList: [...state.todoList, newTodo], showedTodo: [...state.showedTodo, newTodo] };
     case SET_FOCUSED_TODO:
       return { ...state, focusedTodo: action.payload };
+    case INCREMENT_FOCUCED_TIME:
+      updatedTodo = _.find(state.todoList, { id: action.payload });
+      updatedTodo = { ...updatedTodo, focusedTime: ++updatedTodo.focusedTime };
+      index = _.findIndex(state.todoList, { id: action.payload });
+      todoList = immutableSplice(state.todoList, index, 1, updatedTodo);
+      if (state.showedStatus === "All") {
+        showedTodo = todoList;
+        return { ...state, todoList, showedTodo };
+      } else if (state.showedStatus === "Unfinished") {
+        index = _.findIndex(state.showedTodo, { id: action.payload });
+        showedTodo = immutableSplice(state.showedTodo, index, 1, updatedTodo);
+        return { ...state, todoList, showedTodo };
+      } else {
+        return { ...state, todoList };
+      }
     case FINISHED_TODO:
       index = _.findIndex(state.todoList, { id: action.payload.id });
       updatedTodo = { ...action.payload, status: "Finished" };

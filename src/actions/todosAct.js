@@ -5,7 +5,8 @@ import {
   FINISHED_TODO,
   UNFINISHED_TODO,
   GET_SHOWED_TODO,
-  REMOVED_TODO
+  REMOVED_TODO,
+  INCREMENT_FOCUCED_TIME
 } from "../types";
 
 export const toggleAddTodoModal = () => ({ type: TOGGLE_VISIBILITY_ADD_MODAL });
@@ -15,3 +16,4 @@ export const finishedTodo = todo => ({ type: FINISHED_TODO, payload: todo });
 export const unfinishedTodo = todo => ({ type: UNFINISHED_TODO, payload: todo });
 export const getShowedTodo = status => ({ type: GET_SHOWED_TODO, payload: status });
 export const removeTodo = id => ({ type: REMOVED_TODO, payload: id });
+export const incrementFocusTime = id => ({ type: INCREMENT_FOCUCED_TIME, payload: id });

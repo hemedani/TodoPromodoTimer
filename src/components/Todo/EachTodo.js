@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Card, Button, Divider } from "react-native-elements";
 
+import { hhmmss } from "../../utils/hhmmss";
+
 class EachTodo extends PureComponent {
   constructor(props) {
     super(props);
@@ -32,6 +34,8 @@ class EachTodo extends PureComponent {
       <Card title={todo.title} borderRadius={8}>
         <View>
           <Text style={styles.description}>{todo.description}</Text>
+          <Divider />
+          <Text style={styles.description}>Focused Time : {hhmmss(todo.focusedTime)} </Text>
           <Divider />
 
           <View style={styles.btnContainer}>

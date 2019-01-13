@@ -12,6 +12,7 @@ import {
   unfinishedTodo,
   getShowedTodo,
   removeTodo,
+  incrementFocusTime,
 
   //promodo actions
   decrementPromodoroTime,
@@ -19,7 +20,11 @@ import {
   incrementPromodoroRound,
   incrementBreackRound,
   setPromodoroStatus,
-  setPlayStatus
+  setPlayStatus,
+  setPromodoroTime,
+  setBreakTime,
+  setPromodoRound,
+  setBreakRound
 } from "./actions";
 
 import TodoList from "./components/Todo/TodoList";
@@ -36,6 +41,7 @@ const TodoPromodo = ({
   unfinishedTodo,
   getShowedTodo,
   removeTodo,
+  incrementFocusTime,
 
   //promodo props
   promodo,
@@ -44,13 +50,18 @@ const TodoPromodo = ({
   incrementPromodoroRound,
   incrementBreackRound,
   setPromodoroStatus,
-  setPlayStatus
+  setPlayStatus,
+  setPromodoroTime,
+  setBreakTime,
+  setPromodoRound,
+  setBreakRound
 }) => (
   <View style={styles.container}>
     <Header centerComponent={{ text: "Todo Promodo App", style: { color: "#fff" } }} />
     <View style={styles.pages}>
       <PromodoTimer
         focusedTodo={todos.focusedTodo}
+        incrementFocusTime={incrementFocusTime}
         promodo={promodo}
         decrementPromodoroTime={decrementPromodoroTime}
         decrementBreakTime={decrementBreakTime}
@@ -58,6 +69,10 @@ const TodoPromodo = ({
         incrementBreackRound={incrementBreackRound}
         setPromodoroStatus={setPromodoroStatus}
         setPlayStatus={setPlayStatus}
+        setPromodoroTime={setPromodoroTime}
+        setBreakTime={setBreakTime}
+        setPromodoRound={setPromodoRound}
+        setBreakRound={setBreakRound}
       />
       <TodoList
         showedTodo={todos.showedTodo}
@@ -71,6 +86,7 @@ const TodoPromodo = ({
     <AddTodo addModalVisibilty={todos.addModalVisibilty} toggleAddTodoModal={toggleAddTodoModal} addTodo={addTodo} />
     <Button
       raised
+      small={true}
       icon={{ name: "add" }}
       backgroundColor="#0035B0"
       borderRadius={8}
@@ -103,6 +119,7 @@ export default connect(
     unfinishedTodo,
     getShowedTodo,
     removeTodo,
+    incrementFocusTime,
 
     //promodo actions
     decrementPromodoroTime,
@@ -110,6 +127,10 @@ export default connect(
     incrementPromodoroRound,
     incrementBreackRound,
     setPromodoroStatus,
-    setPlayStatus
+    setPlayStatus,
+    setPromodoroTime,
+    setBreakTime,
+    setPromodoRound,
+    setBreakRound
   }
 )(TodoPromodo);
